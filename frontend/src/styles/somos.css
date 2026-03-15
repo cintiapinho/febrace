@@ -1,0 +1,74 @@
+/* Quem Somos */
+.about-us {
+    padding: 100px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+  }
+  
+  .about-content h2 { 
+    color: #0b2f8a; 
+    font-size: 36px; 
+    margin-bottom: 30px; 
+    font-weight: 700;
+  }
+  
+  .about-content p { 
+    color: #666; 
+    margin-bottom: 20px; 
+    max-width: 600px; 
+    line-height: 1.6; 
+    font-size: 16px;
+  }
+  
+  .about-illustration img {
+    width: 320px;
+  }
+  
+  /* Equipe */
+  .team-section { padding: 40px 80px 100px; }
+  .team-title { color: #0b2f8a; margin-bottom: 40px; font-size: 24px; font-weight: 700; }
+  .team-grid { display: flex; gap: 30px; }
+  
+  .team-card {
+    flex: 1;
+    background-color: #f8f9fa;
+    border: 1px solid #0066e6;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .avatar-circle {
+    width: 180px;
+    height: 180px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    overflow: hidden;
+  }
+  
+  /* FAQ */
+  .faq-section { padding: 80px 80px; background-color: #f8f9fa; }
+  .faq-main-title { color: #0b2f8a; font-size: 28px; font-weight: 700; margin-bottom: 50px; }
+  
+  .faq-item {
+    border: 1px solid #0066e6;
+    margin-bottom: 30px;
+    background-color: #fff;
+  }
+  
+  .faq-question {
+    background-color: #d9d9d9;
+    padding: 25px;
+    font-weight: 500;
+    font-size: 18px;
+    border-bottom: 1px solid #0066e6;
+    color: #000;
+  }
+  
+  .faq-answer { padding: 25px; color: #1a1a1a; line-height: 1.6; font-size: 16px; }

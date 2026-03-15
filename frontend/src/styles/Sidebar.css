@@ -1,0 +1,75 @@
+.app-sidebar {
+  width: 260px;
+  min-width: 260px;
+  height: 100vh;
+  background-color: #0b2f8a;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+}
+
+.sidebar-config {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.sidebar-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  /* teste */
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  background-color: #5578c2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile-name-tag {
+  background-color: #001a4d;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 25px;
+  border-radius: 20px;
+  color: #ffffff;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 30px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: white;
+}
+
+.menu-item:visited {
+  color: white;
+}
+
+.menu-item:hover {
+  background-color: #0044cc;
+}
+
+.menu-item.active {
+  background-color: #0044cc;
+  border-left: 6px solid #00d9ff;
+}

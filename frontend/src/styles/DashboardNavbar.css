@@ -1,0 +1,43 @@
+.dash-navbar {
+  height: 80px;
+  background-color: #0052cc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  color: white;
+  width: 100%;
+}
+
+.dash-logo {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.dash-logo-accent {
+  color: #00d9ff;
+}
+
+.dash-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.dash-lang-selector {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 6px 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.dash-notif-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

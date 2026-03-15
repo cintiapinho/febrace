@@ -1,0 +1,147 @@
+.home-container {
+  margin-top: 70px;
+  width: 100%;
+}
+
+/* Seção HERO */
+.hero {
+  background-color: #0b2f8a;
+  color: #ffffff;
+  padding: 100px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-content {
+  max-width: 550px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.hero-image img {
+  max-width: 420px;
+}
+
+/* Seção Benefícios */
+.benefits-intro {
+  text-align: center;
+  padding-top: 60px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.benefits {
+  background-color: #ffffff;
+  padding: 40px 100px 80px;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  text-align: center;
+}
+
+.benefit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.benefit img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Seção PLANOS */
+.plans {
+  background-color: #f6f6f6;
+  padding: 100px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.plans-visual-container {
+  position: relative;
+  width: 500px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plans-main-image img {
+  max-width: 450px;
+  z-index: 1;
+}
+
+.price-bubble {
+  position: absolute;
+  background-color: #0066e6;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 0 10px 30px rgba(0, 102, 230, 0.2);
+}
+
+.bubble-free {
+  width: 180px;
+  height: 180px;
+  top: -30px;
+  left: -40px;
+}
+
+.bubble-paid {
+  width: 200px;
+  height: 200px;
+  bottom: -40px;
+  right: -40px;
+}
+
+.price-bubble strong { font-size: 18px; margin-bottom: 5px; }
+.price-bubble .label { font-size: 14px; opacity: 0.9; }
+.price-bubble h2 { font-size: 38px; margin: 2px 0; }
+.price-bubble .period { font-size: 14px; }
+
+.plans-text {
+  max-width: 450px;
+}
+
+.plans-text h2 {
+  color: #0b2f8a;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.plans-text p {
+  color: #888;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.learn-more-btn {
+  background-color: #0066e6;
+  color: #fff;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}

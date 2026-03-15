@@ -1,0 +1,125 @@
+.perfil-page-container {
+  flex: 1;
+  background-color: #f4f7f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.perfil-blue-header {
+  background-color: #214bb4;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+}
+
+.profile-avatar-wrapper {
+  position: relative;
+  margin-bottom: -75px;
+  z-index: 2;
+}
+
+.avatar-circle {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 50%;
+  border: 4px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-edit-photo {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.profile-form-card {
+  background: white;
+  width: 90%;
+  max-width: 800px;
+  margin-top: 100px;
+  margin-bottom: 40px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.profile-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-group label {
+  display: block;
+  color: #0b2f8a;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e6ed;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #666;
+  font-size: 14px;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  cursor: pointer;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.btn-save-profile {
+  background-color: #0b2f8a;
+  color: white;
+  border: none;
+  padding: 12px 60px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-save-profile:hover {
+  opacity: 0.9;
+}

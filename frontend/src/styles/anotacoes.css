@@ -1,0 +1,115 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f7f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.anotacoes-page {
+  padding: 30px 50px;
+}
+
+.anotacoes-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.btn-add-notes {
+  background-color: #0b2f8a;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-add-notes:hover {
+  background-color: #08246b;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 30px;
+}
+
+.report-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.card-info h3 {
+  color: #0b2f8a;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card-info p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.btn-download {
+  background-color: #0b2f8a;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-download svg {
+  border: 1.5px solid white;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 500px;
+  position: relative;
+}

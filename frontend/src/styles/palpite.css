@@ -1,0 +1,63 @@
+.palpite-layout { display: flex; min-height: 100vh; background-color: #f0f2f5; }
+.palpite-content { flex: 1; display: flex; flex-direction: column; }
+.palpite-container { padding: 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.voltar-btn { background: none; border: none; cursor: pointer; margin-bottom: 20px; }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.resultado-card, .avaliacao-card {
+  background: white;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.resultado-card h3, .avaliacao-card h3 {
+  color: #003399;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.botoes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-diag {
+  width: 100%;
+  max-width: 350px;
+  padding: 15px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Gradiente de cores igual ao print */
+.cor-0 { background-color: #0d3b94; }
+.cor-1 { background-color: #154cbd; }
+.cor-2 { background-color: #0062e3; }
+.cor-3 { background-color: #007bff; }
+.cor-4 { background-color: #74aeff; }
+
+.divisor-ou { color: #003399; font-weight: bold; margin: 5px 0; }
+
+.coluna-direita { display: flex; flex-direction: column; gap: 30px; }
+
+.estrelas { display: flex; justify-content: center; gap: 5px; margin-top: 10px; }
+
+.comparacao-texto { margin-top: 50px; }
+.comparacao-texto h2 { color: #003399; font-size: 22px; margin-bottom: 10px; }
+.comparacao-texto p { color: #333; font-size: 16px; }
