@@ -15,8 +15,19 @@ import {
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
 
+  // pegar usuário salvo no login
+  const usuario = localStorage.getItem("usuario");
+
+  let nomeMedico = "Médico";
+
+  if (usuario) {
+    const dados = JSON.parse(usuario);
+    nomeMedico = dados.nome;
+  }
+
   return (
     <aside className="app-sidebar">
+
       {/* Configurações */}
       <div
         className="sidebar-config"
@@ -27,14 +38,20 @@ const Sidebar: React.FC = () => {
 
       {/* Perfil */}
       <div className="sidebar-profile">
+
         <div className="profile-avatar">
           <User size={45} color="white" />
         </div>
-        <div className="profile-name-tag">NOME USUÁRIO</div>
+
+        <div className="profile-name-tag">
+          Dr. {nomeMedico}
+        </div>
+
       </div>
 
       {/* Menu */}
       <nav className="sidebar-menu">
+
         <NavLink to="/dashboard" className="menu-item">
           <Home size={22} />
           <span>Home</span>
@@ -64,6 +81,7 @@ const Sidebar: React.FC = () => {
           <UserCircle size={22} />
           <span>Perfil</span>
         </NavLink>
+
       </nav>
     </aside>
   );

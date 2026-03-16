@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ==============================
-# CONFIGURAÇÃO DO BANCO SQL
+# CONFIGURAÇÃO DO BANCO MYSQL
 # ==============================
 
 DB_USER = os.getenv("DB_USER", "root")
