@@ -54,13 +54,13 @@ def gerarRespostasLLM(question: str, context: str = ""):
             with engine.connect() as conn:
                 result = conn.execute(
                     text("""
-                        INSERT INTO dados (data, pergunta, resposta)
-                        VALUES (:data, :pergunta, :resposta)
+                        INSERT INTO perguntas_rag (pergunta, resposta, fontes)
+                        VALUES (:pergunta, :resposta, :fontes)
                     """),
                     {
-                        "data": datetime.now(),
                         "pergunta": question,
-                        "resposta": resposta
+                        "resposta": resposta,
+                        "fontes": ", ".join(fontes)
                     }
                 )
                 conn.commit()
@@ -91,7 +91,7 @@ def gerarRespostasLLM(question: str, context: str = ""):
 def obterDados(id):
     with engine.connect() as conn:
         result = conn.execute(
-            text("SELECT id, data, resposta FROM dados WHERE id = :id"),
+            text("SELECT id, criado_em, pergunta, resposta FROM perguntas_rag WHERE id = :id"),
             {"id": id}
         ).fetchone()
 
@@ -100,7 +100,7 @@ def obterDados(id):
 
         return {
             "id": result.id,
-            "data": result.data.isoformat() if isinstance(result.data, datetime) else str(result.data),
+            "data": result.criado_em.isoformat() if isinstance(result.criado_em, datetime) else str(result.criado_em),
             "resposta": result.resposta
         }
 
@@ -108,7 +108,7 @@ def obterDados(id):
 def listarTodos():
     with engine.connect() as conn:
         results = conn.execute(
-            text("SELECT id, data, pergunta, resposta FROM dados ORDER BY data DESC")
+            text("SELECT id, criado_em, pergunta, resposta FROM perguntas_rag ORDER BY criado_em DESC")
         ).fetchall()
 
         lista = []
@@ -116,7 +116,7 @@ def listarTodos():
         for row in results:
             lista.append({
                 "id": row.id,
-                "data": row.data.isoformat() if isinstance(row.data, datetime) else str(row.data),
+                "data": row.criado_em.isoformat() if isinstance(row.criado_em, datetime) else str(row.criado_em),
                 "pergunta": row.pergunta,
                 "resposta": row.resposta
             })
@@ -131,7 +131,7 @@ def atualizarResposta(id):
     with engine.connect() as conn:
 
         result = conn.execute(
-            text("SELECT pergunta FROM dados WHERE id = :id"),
+            text("SELECT pergunta FROM perguntas_rag WHERE id = :id"),
             {"id": id}
         ).fetchone()
 
@@ -151,13 +151,12 @@ def atualizarResposta(id):
 
             conn.execute(
                 text("""
-                    UPDATE dados
-                    SET resposta = :resposta, data = :data
+                    UPDATE perguntas_rag
+                    SET resposta = :resposta
                     WHERE id = :id
                 """),
                 {
                     "resposta": novaResposta,
-                    "data": datetime.now(),
                     "id": id
                 }
             )
@@ -180,7 +179,7 @@ def deletarRegistro(id):
     with engine.connect() as conn:
 
         result = conn.execute(
-            text("DELETE FROM dados WHERE id = :id"),
+            text("DELETE FROM perguntas_rag WHERE id = :id"),
             {"id": id}
         )
 

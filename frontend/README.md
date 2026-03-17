@@ -1,69 +1,111 @@
-Dr.AIgnostico
+# 🖥️ Frontend — DrAignostico
 
+Interface web do sistema de apoio ao diagnóstico clínico, construída com **React 19 + TypeScript + Vite**.
 
-Sistema de consulta e análise de documentos médicos usando RAG (Retrieval-Augmented Generation) com Python e embeddings.
+---
 
+## 📁 Estrutura
 
-Requisitos
+```
+frontend/src/
+├── App.tsx           # Roteamento principal (React Router DOM)
+├── main.tsx          # Ponto de entrada da aplicação
+├── index.css         # Estilos globais
+├── App.css
+│
+├── pages/            # Telas da aplicação
+│   ├── Home.tsx          # Landing page
+│   ├── Login.tsx         # Autenticação
+│   ├── Cadastro.tsx      # Registro de médico
+│   ├── RecuperarSenha.tsx
+│   ├── Dashboard.tsx     # Painel principal pós-login
+│   ├── Diagnosticos.tsx  # Histórico de diagnósticos
+│   ├── Analise.tsx       # Consulta RAG (tela principal)
+│   ├── Pesquisar.tsx     # Busca de doenças
+│   ├── Informacoes.tsx   # Detalhes de uma doença (/informacoes/:doenca)
+│   ├── Palpite.tsx       # Módulo de sugestão avançada
+│   ├── Anotacoes.tsx     # Anotações do médico
+│   ├── Planos.tsx        # Planos (público)
+│   ├── PlanosInterno.tsx # Planos (autenticado)
+│   ├── Perfil.tsx        # Perfil do médico
+│   └── Suporte.tsx       # Suporte ao usuário
+│
+├── components/       # Componentes reutilizáveis
+└── styles/           # Estilos CSS por página/componente
+```
 
-Antes de rodar o projeto, você precisa instalar:
+---
 
+## 🗺️ Rotas
 
-Python 3.11 ou 3.13 https://www.python.org/ftp/python/3.11.7/python-3.11.7-amd64.exe
+| Rota                     | Página         | Acesso       |
+|--------------------------|----------------|--------------|
+| `/`                      | Home           | Público      |
+| `/login`                 | Login          | Público      |
+| `/cadastro`              | Cadastro       | Público      |
+| `/recuperar-senha`       | RecuperarSenha | Público      |
+| `/planos`                | Planos         | Público      |
+| `/dashboard`             | Dashboard      | Autenticado  |
+| `/diagnostico`           | Diagnosticos   | Autenticado  |
+| `/analise`               | Analise        | Autenticado  |
+| `/pesquisar`             | Pesquisar      | Autenticado  |
+| `/informacoes/:doenca`   | Informacoes    | Autenticado  |
+| `/palpite`               | Palpite        | Autenticado  |
+| `/anotacoes`             | Anotacoes      | Autenticado  |
+| `/planosinterno`         | PlanosInterno  | Autenticado  |
+| `/perfil`                | Perfil         | Autenticado  |
+| `/suporte`               | Suporte        | Autenticado  |
 
-⚠️ Python 3.14 não é compatível por causa do ChromaDB.
+---
 
+## 🚀 Como Rodar
 
-Ollama CLI https://ollama.com/download
+```bash
+# Instalar dependências
+npm install
 
+# Servidor de desenvolvimento (http://localhost:5173)
+npm run dev
 
-Verifique se o Python está funcionando:
+# Build de produção
+npm run build
 
+# Preview do build
+npm run preview
+```
 
-python --version
+---
 
+## 📡 Comunicação com o Backend
 
-Verifique se o Ollama está funcionando:
+O frontend se comunica com a API em `http://localhost:8000`.
 
+**Endpoint principal:**
 
-ollama --version
+```typescript
+// POST /respostas-llm
+const response = await fetch("http://localhost:8000/respostas-llm", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    question: "sintomas do paciente...",
+    context: "informações adicionais..."
+  })
+});
 
+const data = await response.json();
+// data.resposta → string com diagnósticos diferenciais
+```
 
-Se estiver funcionando, você pode puxar um modelo, por exemplo:
+---
 
+## 🧰 Dependências Principais
 
-ollama pull llama3
-
-
-Passos para rodar o projeto
-
-
-Abrir o terminal e navegar até a pasta do projeto cd C:\xampp\htdocs\Dr.AIgnostico
-
-
-Criar e ativar o ambiente virtual dentro do backend cd backend 
-
-(criar uma máquina virtual) python -m venv venv 
-
-(ativar a máquina virtual) venv\Scripts\Activate
-
-
-
-
-⚠️ Se der erro no PowerShell sobre execução de scripts, rode:
-
-
-
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-
-Instalar dependências pip install -r requirements.txt
-
-
-Gerar os embeddings (vetores) dos documentos python vetorizador.py
-
-
-Sempre que adicionar ou alterar documentos dentro de backend\dados, rode este comando novamente.
-
-
-Rodar a aplicação python run.py
+| Pacote              | Versão  | Uso                              |
+|---------------------|---------|----------------------------------|
+| react               | 19.x    | Framework UI                     |
+| react-dom           | 19.x    | Renderização DOM                 |
+| react-router-dom    | 7.x     | Roteamento SPA                   |
+| lucide-react        | 0.574.x | Ícones                           |
+| typescript          | 5.9.x   | Tipagem estática                 |
+| vite                | 7.x     | Build tool + dev server          |

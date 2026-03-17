@@ -5,14 +5,17 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 from app.api.services.services import gerarRespostasLLM
-from app.config import DATABASE_URL
+from app.config import DATABASE_URL, FAISS_INDEX_PATH
 
 from langchain_groq import ChatGroq
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from dotenv import load_dotenv
+from pathlib import Path
 
 import json, re, os, random
 
-load_dotenv()
+load_dotenv(override=True)
 
 # =========================
 # CONFIGURAÇÕES
@@ -344,6 +347,66 @@ def respostas_llm():
 
     except Exception as e:
         print("ERRO LLM:", e)
+        return jsonify({"erro": str(e)}), 500
+
+
+# =========================
+# DOENÇA (INFORMAÇÕES VIA RAG)
+# =========================
+
+@app.route("/doenca/<nome>", methods=["GET"])
+def get_doenca(nome):
+    try:
+        VETORES_DIR = Path("vetores_doencas")
+        if not VETORES_DIR.exists():
+            return jsonify({"erro": "Índice vetorial não encontrado"}), 500
+
+        embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
+        vectorstore = FAISS.load_local(
+            str(VETORES_DIR),
+            embeddings,
+            allow_dangerous_deserialization=True
+        )
+
+        docs = vectorstore.similarity_search(nome, k=6)
+        contexto = "\n\n".join([d.page_content for d in docs])
+
+        llm = ChatGroq(
+            model="llama-3.1-8b-instant",
+            temperature=0,
+            api_key=os.getenv("GROQ_API_KEY")
+        )
+
+        prompt = f"""Com base nos documentos médicos abaixo, responda em JSON válido sobre a doença "{nome}".
+
+O JSON deve ter exatamente este formato:
+{{
+  "descricao": "descrição da doença em 2-3 frases",
+  "sintomas": ["sintoma 1", "sintoma 2", "sintoma 3"],
+  "tratamentos": ["tratamento 1", "tratamento 2", "tratamento 3"],
+  "aviso": "aviso médico importante ou string vazia"
+}}
+
+Responda APENAS com o JSON, sem texto adicional.
+
+Documentos:
+{contexto}"""
+
+        resposta = llm.invoke(prompt)
+        texto = resposta.content.strip()
+
+        # Extrai o JSON da resposta
+        match = re.search(r'\{.*\}', texto, re.DOTALL)
+        if match:
+            dados = json.loads(match.group())
+            return jsonify(dados)
+        else:
+            return jsonify({"erro": "Resposta inválida do LLM"}), 500
+
+    except Exception as e:
+        print("ERRO /doenca:", e)
         return jsonify({"erro": str(e)}), 500
 
 
