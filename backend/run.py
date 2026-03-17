@@ -331,13 +331,15 @@ def respostas_llm():
 
         question = data.get("question","").strip()
         context = data.get("context","").strip()
+        usuario_id = data.get("usuario_id", None)
 
         if not question:
             return jsonify({"erro": "Pergunta vazia"}), 400
 
         resultado = gerarRespostasLLM(
             question=question,
-            context=context
+            context=context,
+            usuario_id=usuario_id
         )
 
         if isinstance(resultado, tuple):

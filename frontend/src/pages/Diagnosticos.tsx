@@ -31,13 +31,16 @@ const Diagnosticos: React.FC = () => {
 
       const perguntaCompleta = `Paciente ${genero}, ${idade} anos, peso ${peso}kg, altura ${altura}m. Sintomas: ${sintomas}. Início: ${inicioSintomas}. Suspeita: ${palpite}.`;
 
+      const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+
       const response = await fetch("http://localhost:8000/respostas-llm", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          question: perguntaCompleta
+          question: perguntaCompleta,
+          usuario_id: usuario.id || null
         })
       });
 

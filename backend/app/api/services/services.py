@@ -18,7 +18,7 @@ except Exception:
     print("⚠️ Erro ao inicializar RAG:")
     traceback.print_exc()
 
-def gerarRespostasLLM(question: str, context: str = ""):
+def gerarRespostasLLM(question: str, context: str = "", usuario_id: int = None):
     """
     Recebe question e context separados, chama o RAG chain e retorna JSON
     """
@@ -63,6 +63,20 @@ def gerarRespostasLLM(question: str, context: str = ""):
                         "fontes": ", ".join(fontes)
                     }
                 )
+                # Salva em historico_diagnostico (por usuário) se usuario_id foi enviado
+                if usuario_id:
+                    conn.execute(
+                        text("""
+                            INSERT INTO historico_diagnostico (usuario_id, sintomas, resposta_ia)
+                            VALUES (:usuario_id, :sintomas, :resposta_ia)
+                        """),
+                        {
+                            "usuario_id": usuario_id,
+                            "sintomas": question,
+                            "resposta_ia": resposta
+                        }
+                    )
+
                 conn.commit()
 
                 return {
