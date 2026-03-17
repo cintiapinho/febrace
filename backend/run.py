@@ -413,6 +413,56 @@ Documentos:
 
 
 # =========================
+# PESQUISAS
+# =========================
+
+@app.route("/pesquisas", methods=["POST"])
+def salvar_pesquisa():
+    dados = request.json
+    usuario_id = dados.get("usuario_id")
+    termo = dados.get("termo_pesquisa")
+
+    if not usuario_id or not termo:
+        return jsonify({"erro": "usuario_id e termo_pesquisa são obrigatórios"}), 400
+
+    try:
+        with engine.connect() as conn:
+            conn.execute(
+                text("INSERT INTO pesquisas (usuario_id, termo_pesquisa) VALUES (:usuario_id, :termo)"),
+                {"usuario_id": usuario_id, "termo": termo}
+            )
+            conn.commit()
+        return jsonify({"mensagem": "Pesquisa salva com sucesso"}), 201
+    except Exception as e:
+        print("ERRO ao salvar pesquisa:", e)
+        return jsonify({"erro": "Erro interno ao salvar pesquisa"}), 500
+
+@app.route("/pesquisas/<int:usuario_id>", methods=["GET"])
+def listar_pesquisas(usuario_id):
+    try:
+        with engine.connect() as conn:
+            result = conn.execute(
+                text("SELECT id, termo_pesquisa, criado_em FROM pesquisas WHERE usuario_id = :usuario_id ORDER BY criado_em DESC LIMIT 20"),
+                {"usuario_id": usuario_id}
+            )
+            
+            pesquisas = [
+                {
+                    "id": row.id, 
+                    "termo_pesquisa": row.termo_pesquisa, 
+                    "criado_em": row.criado_em.strftime("%d/%m/%Y %H:%M") if row.criado_em else None
+                }
+                for row in result
+            ]
+
+        return jsonify(pesquisas), 200
+    except Exception as e:
+        print("ERRO ao listar pesquisas:", e)
+        return jsonify({"erro": "Erro interno ao listar pesquisas"}), 500
+
+
+
+# =========================
 # START SERVER
 # =========================
 
