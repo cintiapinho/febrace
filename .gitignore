@@ -1,0 +1,58 @@
+# ========================
+# BACKEND — Python / Flask
+# ========================
+
+# Ambiente virtual
+backend/venv/
+venv/
+env/
+.venv/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Variáveis de ambiente
+.env
+*.env
+
+# Índice FAISS (gerado localmente)
+backend/vetores_doencas/
+vetores_doencas/
+
+# Scripts temporários
+backend/setup_tabela.py
+
+# ========================
+# FRONTEND — Node / React
+# ========================
+
+node_modules/
+dist/
+dist-ssr/
+.cache/
+
+# ========================
+# GERAL
+# ========================
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.egg-info/
+*.egg
